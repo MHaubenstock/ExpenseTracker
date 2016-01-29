@@ -17,36 +17,30 @@ import UIKit
  There is no need to actually create view controllers for each page in advance -- indeed doing so incurs unnecessary overhead. Given the data model, these methods create, configure, and return a new view controller on demand.
  */
 
+import UIKit
 
 class ModelController: NSObject, UIPageViewControllerDataSource {
 
-    //var pageData: [String] = []
-    var viewControllerIDs : [String]!
+    var viewControllers : [UIViewController]!
 
     override init() {
         super.init()
         // Create the data model.
-        //let dateFormatter = NSDateFormatter()
-        //pageData = dateFormatter.monthSymbols
-        viewControllerIDs = [Constants.ExpenseOverviewID, Constants.ExpenseAddID]
     }
 
-    func viewControllerAtIndex(index: Int, storyboard: UIStoryboard) -> UIViewController? {
-        // Return the data view controller for the given index.
-        if (self.viewControllerIDs.count == 0) || (index >= self.viewControllerIDs.count) {
-            return nil
+    func viewControllers(storyboard: UIStoryboard) -> [UIViewController]?
+    {
+        viewControllers = [storyboard.instantiateViewControllerWithIdentifier(Constants.OverviewId)] + Constants.Entities.map { (entity) -> AddEntityController in
+            return AddEntityController.initializeAddEntityControllerWithEntity(entity, storyboard: storyboard)
         }
-
-        // Create a new view controller and pass suitable data.
-        let viewController = storyboard.instantiateViewControllerWithIdentifier(viewControllerIDs[index])
-        //dataViewController.dataObject = self.pageData[index]
-        return viewController
+        
+        return viewControllers
     }
 
     func indexOfViewController(viewController: UIViewController) -> Int {
         // Return the index of the given data view controller.
         // For simplicity, this implementation uses a static array of model objects and the view controller stores the model object; you can therefore use the model object to identify the index.
-        return viewControllerIDs.indexOf(viewController.restorationIdentifier!) ?? NSNotFound
+        return viewControllers.indexOf(viewController) ?? NSNotFound
     }
 
     // MARK: - Page View Controller Data Source
@@ -58,7 +52,7 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
         }
         
         index--
-        return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
+        return viewControllers[index]
     }
 
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
@@ -68,10 +62,10 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
         }
         
         index++
-        if index == self.viewControllerIDs.count {
+        if index == self.viewControllers.count {
             return nil
         }
-        return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
+        return viewControllers[index]
     }
 
 }

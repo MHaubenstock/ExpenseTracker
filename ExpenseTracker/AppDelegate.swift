@@ -13,15 +13,18 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    static var expenses = [NSManagedObject]()
-    static var bills = [NSManagedObject]()
+    //static var entities = [[NSManagedObject]()]
+    static var entities : [NSManagedObject] = { return AppDelegate.fetchEntityFromManagedObjectContext(Constants.EntityId) }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
-        AppDelegate.expenses = fetchEntityFromManagedObjectContext(Constants.ExpenseEntityID)
-        AppDelegate.bills = fetchEntityFromManagedObjectContext(Constants.BillEntityID)
 
+        let count = AppDelegate.entities.filter({
+            (entity : NSManagedObject) -> Bool in return entity.valueForKey(EntityParameters.category) as! String == "Bill"
+        })
+        
+        print(count.count)
+        
         return true
     }
 
@@ -58,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("ExpenseData", withExtension: "momd")!
+        let modelURL = NSBundle.mainBundle().URLForResource("EntityData", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
     
@@ -66,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("ExpenseTrackerCoreData.sqlite")
+        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("EntityTrackerCoreData.sqlite")
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
@@ -112,12 +115,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // Mark: - Fetching from CoreData
-    func fetchEntityFromManagedObjectContext(entityName : String) -> [NSManagedObject]
+    static func fetchEntityFromManagedObjectContext(entityName : String) -> [NSManagedObject]
     {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "category='Groceries'")
         
         do
         {
@@ -129,6 +131,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Could not fetch \(error), \(error.userInfo)")
             return [NSManagedObject]()
         }
+    }
+    
+    static func getFilteredEntitiesForEntityId(entityId : String) -> [NSManagedObject]
+    {
+        return AppDelegate.entities.filter({
+            (entity : NSManagedObject) -> Bool in return entity.valueForKey(EntityParameters.type) as! String == entityId
+        })
+    }
+    
+    // Mark - Static Functions
+    static func indexOfEnity(entity : Entity) -> Int
+    {
+        return Constants.Entities.indexOf(entity) ?? NSNotFound
     }
 }
 

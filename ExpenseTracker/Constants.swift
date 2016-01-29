@@ -10,45 +10,13 @@ import Foundation
 
 class Constants
 {
-    static let OverviewID = "Overview"
-    static let EntityAddID = "AddEEntity"
-    static let EntityCellID = "ExpenseCell"
-    //static let EntityIds = [ExpenseParameters.self, BillParameters.self]
-    static let EntityIDs = [Entity(), BillParameters()]
-}
-
-class Entity
-{
-    static let category = "category"
-    static let amount = "expenseAmount"
-    static let date = "expenseDate"
-    static let title = "expenseTitle"
-    static let Id = "expenseId"
-    static let categories : [String] = ["Groceries", "Entertainment", "Restuarant"]
+    static let AddEntityControllerStartingIndex = 1
+    static let OverviewId = "Overview"
+    static let EntityAddId = "AddEntity"
+    static let EntityCellId = "EntityCell"
+    static let EntityId = "Entity"
     
-    init(entityName : String, entityCategories)
-    {
-        
-    }
+    static let Bill = Entity(entityType: "Bill", entityCategories: ["Entertainment", "Recreation", "Utilities"])
+    static let Expense = Entity(entityType: "Expense", entityCategories: ["Entertainment", "Groceries", "Restaurant"])
+    static let Entities = [Bill, Expense]
 }
-
-/*
-class ExpenseParameters
-{
-    static let category = "category"
-    static let amount = "expenseAmount"
-    static let date = "expenseDate"
-    static let title = "expenseTitle"
-    static let Id = "expenseId"
-    static let categories : [String] = ["Groceries", "Entertainment", "Restuarant"]
-}
-
-class BillParameters
-{
-    static let category = "category"
-    static let expenseAmount = "billAmount"
-    static let expenseDate = "billDueDate"
-    static let expenseTitle = "billTitle"
-    static let expenseId = "billId"
-}
-*/

@@ -11,27 +11,37 @@ import CoreData
 
 class AddEntityController: UIViewController
 {
-    @IBOutlet var expenseTitle: UITextField!
-    @IBOutlet var expenseAmount: UITextField!
-    @IBOutlet var expenseDate: UIDatePicker!
-    @IBOutlet var expenseCategory: UIPickerView!
+    @IBOutlet var entityTitle: UITextField!
+    @IBOutlet var entityAmount: UITextField!
+    @IBOutlet var entityDate: UIDatePicker!
+    @IBOutlet var entityCategory: UIPickerView!
     
-    var categories : [String] = ["Groceries", "Entertainment", "Restuarant"]
+    var entity : Entity!
     
-    @IBAction func addExpense(sender: UIButton)
+    static func initializeAddEntityControllerWithEntity(entity: Entity, storyboard : UIStoryboard) -> AddEntityController
+    {
+        let addEntityController = storyboard.instantiateViewControllerWithIdentifier(Constants.EntityAddId) as! AddEntityController
+        addEntityController.entity = entity
+        
+        return addEntityController
+        
+    }
+    
+    @IBAction func addEntity(sender: UIButton)
     {
         //Add expense to the expense core data store
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext : NSManagedObjectContext! = appDelegate.managedObjectContext
-        let entity : NSEntityDescription! = NSEntityDescription.entityForName(Constants.ExpenseEntityID, inManagedObjectContext: managedContext)
+        let entity : NSEntityDescription! = NSEntityDescription.entityForName(Constants.EntityId, inManagedObjectContext: managedContext)
         let expense : NSManagedObject! = NSManagedObject(entity: entity, insertIntoManagedObjectContext: managedContext)
         
-        print("BLAH: \(expenseAmount.text!)")
-        expense.setValue(expenseTitle.text, forKey: ExpenseParameters.expenseTitle)
-        expense.setValue(NSNumber(float: Float(expenseAmount.text!)!), forKey: ExpenseParameters.expenseAmount)
-        expense.setValue(expenseDate.date, forKey: ExpenseParameters.expenseDate)
-        expense.setValue(categories[expenseCategory.selectedRowInComponent(0)], forKey: ExpenseParameters.category)
-        expense.setValue(AppDelegate.expenses.count + 1, forKey: ExpenseParameters.expenseId)
+        expense.setValue(entityTitle.text, forKey: EntityParameters.title)
+        expense.setValue(NSNumber(float: Float(entityAmount.text!)!), forKey: EntityParameters.amount)
+        expense.setValue(entityDate.date, forKey: EntityParameters.date)
+        //TODO: Still need to flesh out category a bit more
+        expense.setValue(self.entity.categories[entityCategory.selectedRowInComponent(0)], forKey: EntityParameters.category)
+        expense.setValue(AppDelegate.entities.count + Constants.AddEntityControllerStartingIndex, forKey: EntityParameters.id)
+        expense.setValue(self.entity.type, forKey: EntityParameters.type)
         
         do
         {

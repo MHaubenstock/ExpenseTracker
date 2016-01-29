@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
+    <entity name="Category" syncable="YES">
+        <relationship name="categoryToExpense" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Expense" inverseName="categoryToExpense" inverseEntity="Expense" syncable="YES"/>
+    </entity>
+    <entity name="Expense" syncable="YES">
+        <attribute name="category" optional="YES" syncable="YES"/>
+        <relationship name="categoryToExpense" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="categoryToExpense" inverseEntity="Category" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Expense" positionX="-45" positionY="0" width="128" height="73"/>
+        <element name="Category" positionX="-254" positionY="11" width="110" height="58"/>
+    </elements>
+</model>

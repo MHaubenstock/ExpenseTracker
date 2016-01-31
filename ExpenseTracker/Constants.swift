@@ -11,7 +11,9 @@ import Foundation
 class Constants
 {
     static let AddEntityControllerStartingIndex = 1
+    static let SubRootViewId = "SubRootView"
     static let OverviewId = "Overview"
+    static let SingleEntityOverviewId = "SingleEntityOverview"
     static let EntityAddId = "AddEntity"
     static let EntityCellId = "EntityCell"
     static let EntityId = "Entity"

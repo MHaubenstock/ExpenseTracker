@@ -133,11 +133,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    static func getFilteredEntitiesForEntityId(entityId : String) -> [NSManagedObject]
+    static func filteredEntityType(entityType : String) -> [NSManagedObject]
     {
         return AppDelegate.entities.filter({
-            (entity : NSManagedObject) -> Bool in return entity.valueForKey(EntityParameters.type) as! String == entityId
+            (entity : NSManagedObject) -> Bool in return entity.valueForKey(EntityParameters.type) as! String == entityType
         })
+    }
+    
+    static func filteredCategory(category : String, ofEntityType entityType : String) -> [NSManagedObject]
+    {
+        return filteredEntityType(entityType).filter({
+            (entity : NSManagedObject) -> Bool in return entity.valueForKey(EntityParameters.category) as! String == category
+        })
+    }
+    
+    static func amountTotal() -> Float
+    {
+        return amountTotalForEntityArray(AppDelegate.entities)
+    }
+    
+    static func amountTotalForEntityType(entityType : String) -> Float
+    {
+        return amountTotalForEntityArray(filteredEntityType(entityType))
+    }
+    
+    static func amountTotalForCategory(category : String, ofEntityType entityType : String) -> Float
+    {
+        return amountTotalForEntityArray(filteredCategory(category, ofEntityType: entityType))
+    }
+    
+    private static func amountTotalForEntityArray(entityArray : [NSManagedObject]) -> Float
+    {
+        return entityArray.reduce(0.0, combine: {$0 + ($1.valueForKey(EntityParameters.amount) as! Float)})
     }
     
     // Mark - Static Functions

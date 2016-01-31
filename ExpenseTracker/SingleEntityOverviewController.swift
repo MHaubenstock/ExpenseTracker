@@ -1,4 +1,14 @@
 //
+//  SingleEntityOverviewController.swift
+//  ExpenseTracker
+//
+//  Created by Michael Haubenstock on 1/29/16.
+//  Copyright © 2016 Haubensoft, LLC. All rights reserved.
+//
+
+import Foundation
+
+//
 //  EntityOverviewController.swift
 //  ExpenseTracker
 //
@@ -8,15 +18,16 @@
 
 import UIKit
 
-class EntityOverviewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class SingleEntityOverviewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     @IBOutlet weak var entityTable : UITableView!
     @IBOutlet weak var totalLabel : UILabel!
     
+    var entity : Entity!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -26,11 +37,19 @@ class EntityOverviewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
-        totalLabel.text = String(AppDelegate.amountTotal())
+        
+        totalLabel.text = String(AppDelegate.amountTotalForEntityType(entity.type))
         
         entityTable.delegate = self
         entityTable.reloadData()
+    }
+    
+    static func initializeSingleEntityOverviewControllerWithEntity(entity: Entity, storyboard : UIStoryboard) -> SingleEntityOverviewController
+    {
+        let singleEntityOverviewController = storyboard.instantiateViewControllerWithIdentifier(Constants.SingleEntityOverviewId) as! SingleEntityOverviewController
+        singleEntityOverviewController.entity = entity
+        
+        return singleEntityOverviewController
     }
     
     //MARK: Table View DataSource
@@ -55,11 +74,12 @@ class EntityOverviewController: UIViewController, UITableViewDelegate, UITableVi
     {
         let cell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier(Constants.EntityCellId)! as UITableViewCell
         
+        //This is inefficient
         let entity = AppDelegate.filteredEntityType(Constants.Entities[indexPath.section].type)[indexPath.row]
         
         cell.textLabel?.text = entity.valueForKey(EntityParameters.title) as? String
         cell.detailTextLabel?.text = "$\((entity.valueForKey(EntityParameters.amount) as! Float))"
-
+        
         return cell
     }
 }

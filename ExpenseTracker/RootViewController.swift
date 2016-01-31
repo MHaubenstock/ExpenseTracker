@@ -11,18 +11,16 @@ import UIKit
 class RootViewController: UIViewController, UIPageViewControllerDelegate {
 
     var pageViewController: UIPageViewController?
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // Configure the page view controller and add it as a child view controller.
-        self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+        self.pageViewController = getUIPageViewControllerWithTransitionStyle()
         self.pageViewController!.delegate = self
 
-        let viewControllers = self.modelController.viewControllers(self.storyboard!)
-        self.pageViewController!.setViewControllers([(viewControllers!.first)!], direction: .Forward, animated: false, completion: {done in })
-
+        self.pageViewController!.setViewControllers(getStartingViewController(), direction: .Forward, animated: false, completion: {done in })
+        
         self.pageViewController!.dataSource = self.modelController
 
         self.addChildViewController(self.pageViewController!)
@@ -87,6 +85,23 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
         return .Mid
     }
 
-
+    
+    // Mark: - Helper Methods
+    func getViewControllersForPageViewController() -> [UIViewController]
+    {
+        return self.modelController.rootViewControllers(self.storyboard!)
+    }
+    
+    func getUIPageViewControllerWithTransitionStyle() -> UIPageViewController
+    {
+        return UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+    }
+    
+    func getStartingViewController() -> [UIViewController]
+    {
+        //This will initialize the view controllers, but should only return an array of a single view controller. The one you want to be displayed first
+        let viewControllers = getViewControllersForPageViewController()
+        return [(viewControllers.first)!]
+    }
 }
 

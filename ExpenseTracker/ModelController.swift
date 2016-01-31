@@ -28,11 +28,19 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
         // Create the data model.
     }
 
-    func viewControllers(storyboard: UIStoryboard) -> [UIViewController]?
+    func rootViewControllers(storyboard: UIStoryboard) -> [UIViewController]!
     {
-        viewControllers = [storyboard.instantiateViewControllerWithIdentifier(Constants.OverviewId)] + Constants.Entities.map { (entity) -> AddEntityController in
-            return AddEntityController.initializeAddEntityControllerWithEntity(entity, storyboard: storyboard)
+        viewControllers = [storyboard.instantiateViewControllerWithIdentifier(Constants.OverviewId)] + Constants.Entities.map { (entity) -> SubRootViewController in
+            return SubRootViewController.initializeSubRootViewControllerWithEntity(entity, storyboard: storyboard)
         }
+        
+        return viewControllers
+    }
+    
+    func subRootViewControllersForEntity(entity : Entity, storyboard: UIStoryboard) -> [UIViewController]!
+    {
+        //viewControllers = [SingleEntityOverviewController.initializeSingleEntityOverviewControllerWithEntity(entity, storyboard: storyboard), AddEntityController.initializeAddEntityControllerWithEntity(entity, storyboard: storyboard)]
+        viewControllers = [AddEntityController.initializeAddEntityControllerWithEntity(entity, storyboard: storyboard), SingleEntityOverviewController.initializeSingleEntityOverviewControllerWithEntity(entity, storyboard: storyboard)]
         
         return viewControllers
     }

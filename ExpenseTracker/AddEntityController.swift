@@ -24,7 +24,6 @@ class AddEntityController: UIViewController
         addEntityController.entity = entity
         
         return addEntityController
-        
     }
     
     @IBAction func addEntity(sender: UIButton)
@@ -45,7 +44,20 @@ class AddEntityController: UIViewController
         
         do
         {
+            //Save the new entity
             try managedContext.save()
+            
+            //Clear data on page
+            entityTitle.text = ""
+            entityAmount.text = ""
+            entityDate.setDate(NSDate.init(), animated: false)
+            //Set category back to default
+            
+            //Reload entities data
+            AppDelegate.setEntitiesArray(AppDelegate.fetchEntityFromManagedObjectContext(Constants.EntityId))
+            
+            //transition back to overview page
+            (self.parentViewController?.parentViewController as! RootViewController).setDefaultStartingViewControllerAsVisibleViewController()
         }
         catch let error as NSError
         {

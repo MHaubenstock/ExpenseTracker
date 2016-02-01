@@ -17,6 +17,7 @@ class EntityOverviewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        entityTable.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -27,9 +28,13 @@ class EntityOverviewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        totalLabel.text = String(AppDelegate.amountTotal())
+        totalLabel.text = "Total: $\(AppDelegate.amountTotal())"
         
-        entityTable.delegate = self
+        loadData()
+    }
+    
+    func loadData()
+    {
         entityTable.reloadData()
     }
     

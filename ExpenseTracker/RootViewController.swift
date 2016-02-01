@@ -103,5 +103,15 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
         let viewControllers = getViewControllersForPageViewController()
         return [(viewControllers.first)!]
     }
+    
+    func setDefaultStartingViewControllerAsVisibleViewController()
+    {
+        setVisibleViewControllerForPageViewController(getStartingViewController())
+    }
+    
+    func setVisibleViewControllerForPageViewController(viewController : [UIViewController])
+    {
+        self.pageViewController?.setViewControllers(viewController, direction: .Forward, animated: false, completion: nil)
+    }
 }
 

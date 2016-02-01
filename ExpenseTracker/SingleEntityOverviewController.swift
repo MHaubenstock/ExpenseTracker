@@ -28,6 +28,8 @@ class SingleEntityOverviewController: UIViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        entityTable.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,10 +40,10 @@ class SingleEntityOverviewController: UIViewController, UITableViewDelegate, UIT
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        totalLabel.text = String(AppDelegate.amountTotalForEntityType(entity.type))
+        totalLabel.text = "Total: $\(AppDelegate.amountTotalForEntityType(entity.type))"
         
-        entityTable.delegate = self
-        entityTable.reloadData()
+        
+        loadData()
     }
     
     static func initializeSingleEntityOverviewControllerWithEntity(entity: Entity, storyboard : UIStoryboard) -> SingleEntityOverviewController
@@ -52,20 +54,26 @@ class SingleEntityOverviewController: UIViewController, UITableViewDelegate, UIT
         return singleEntityOverviewController
     }
     
+    func loadData()
+    {
+        entityTable.reloadData()
+    }
+    
     //MARK: Table View DataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        return Constants.Entities.count
+        return 1
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
-        return Constants.Entities[section].type
+        return Constants.Entities[AppDelegate.indexOfEnity(entity)].type
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        let count = AppDelegate.filteredEntityType(Constants.Entities[section].type).count
+        //Could be more efficient
+        let count = AppDelegate.filteredEntityType(Constants.Entities[AppDelegate.indexOfEnity(entity)].type).count
         
         return count
     }
@@ -75,7 +83,7 @@ class SingleEntityOverviewController: UIViewController, UITableViewDelegate, UIT
         let cell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier(Constants.EntityCellId)! as UITableViewCell
         
         //This is inefficient
-        let entity = AppDelegate.filteredEntityType(Constants.Entities[indexPath.section].type)[indexPath.row]
+        let entity = AppDelegate.filteredEntityType(Constants.Entities[AppDelegate.indexOfEnity(self.entity)].type)[indexPath.row]
         
         cell.textLabel?.text = entity.valueForKey(EntityParameters.title) as? String
         cell.detailTextLabel?.text = "$\((entity.valueForKey(EntityParameters.amount) as! Float))"

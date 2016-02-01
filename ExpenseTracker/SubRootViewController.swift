@@ -21,7 +21,8 @@ class SubRootViewController : RootViewController
     {
         super.viewWillAppear(animated)
         
-        //pageViewController?.setViewControllers([(pageViewController?.viewControllers!.last)!], direction: .Forward, animated: <#T##Bool#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
+        //When paging back to an entity, show the overview first even if it was on another page when you left the entity
+        setDefaultStartingViewControllerAsVisibleViewController()
     }
     
     static func initializeSubRootViewControllerWithEntity(entity: Entity, storyboard : UIStoryboard) -> SubRootViewController

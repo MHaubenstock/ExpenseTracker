@@ -18,12 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-
-        let count = AppDelegate.entities.filter({
-            (entity : NSManagedObject) -> Bool in return entity.valueForKey(EntityParameters.category) as! String == "Bill"
-        })
-        
-        print(count.count)
         
         return true
     }
@@ -131,6 +125,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Could not fetch \(error), \(error.userInfo)")
             return [NSManagedObject]()
         }
+    }
+    
+    static func setEntitiesArray(entities : [NSManagedObject])
+    {
+        self.entities = entities
     }
     
     static func filteredEntityType(entityType : String) -> [NSManagedObject]

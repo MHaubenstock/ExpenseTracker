@@ -30,8 +30,11 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
 
     func rootViewControllers(storyboard: UIStoryboard) -> [UIViewController]!
     {
-        viewControllers = [storyboard.instantiateViewControllerWithIdentifier(Constants.OverviewId)] + Constants.Entities.map { (entity) -> SubRootViewController in
-            return SubRootViewController.initializeSubRootViewControllerWithEntity(entity, storyboard: storyboard)
+        if viewControllers == nil
+        {
+            viewControllers = [storyboard.instantiateViewControllerWithIdentifier(Constants.OverviewId)] + Constants.Entities.map { (entity) -> SubRootViewController in
+                return SubRootViewController.initializeSubRootViewControllerWithEntity(entity, storyboard: storyboard)
+            }
         }
         
         return viewControllers
@@ -39,8 +42,10 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
     
     func subRootViewControllersForEntity(entity : Entity, storyboard: UIStoryboard) -> [UIViewController]!
     {
-        //viewControllers = [SingleEntityOverviewController.initializeSingleEntityOverviewControllerWithEntity(entity, storyboard: storyboard), AddEntityController.initializeAddEntityControllerWithEntity(entity, storyboard: storyboard)]
-        viewControllers = [AddEntityController.initializeAddEntityControllerWithEntity(entity, storyboard: storyboard), SingleEntityOverviewController.initializeSingleEntityOverviewControllerWithEntity(entity, storyboard: storyboard)]
+        if viewControllers == nil
+        {
+            viewControllers = [AddEntityController.initializeAddEntityControllerWithEntity(entity, storyboard: storyboard), SingleEntityOverviewController.initializeSingleEntityOverviewControllerWithEntity(entity, storyboard: storyboard)]
+        }
         
         return viewControllers
     }

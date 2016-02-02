@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddEntityController: UIViewController
+class AddEntityController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
 {
     @IBOutlet var entityTitle: UITextField!
     @IBOutlet var entityAmount: UITextField!
@@ -17,6 +17,12 @@ class AddEntityController: UIViewController
     @IBOutlet var entityCategory: UIPickerView!
     
     var entity : Entity!
+    
+    override func viewDidLoad()
+    {
+        entityCategory.delegate = self
+        entityCategory.dataSource = self
+    }
     
     static func initializeAddEntityControllerWithEntity(entity: Entity, storyboard : UIStoryboard) -> AddEntityController
     {
@@ -57,11 +63,28 @@ class AddEntityController: UIViewController
             AppDelegate.setEntitiesArray(AppDelegate.fetchEntityFromManagedObjectContext(Constants.EntityId))
             
             //transition back to overview page
-            (self.parentViewController?.parentViewController as! RootViewController).setDefaultStartingViewControllerAsVisibleViewController()
+            (self.parentViewController?.parentViewController as! RootViewController).setDefaultStartingViewControllerAsVisibleViewController(true)
         }
         catch let error as NSError
         {
             print("Could not save \(error), \(error.userInfo)")
         }
+    }
+    
+    // MARK: UIPickerView DataSource
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
+    {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    {
+        return entity.categories.count
+    }
+    
+    // MARK: UIPickerView Delegate
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+    {
+        return entity.categories[row]
     }
 }

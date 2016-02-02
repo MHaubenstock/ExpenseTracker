@@ -17,14 +17,6 @@ class SubRootViewController : RootViewController
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        
-        //When paging back to an entity, show the overview first even if it was on another page when you left the entity
-        setDefaultStartingViewControllerAsVisibleViewController()
-    }
-    
     static func initializeSubRootViewControllerWithEntity(entity: Entity, storyboard : UIStoryboard) -> SubRootViewController
     {
         let subRootViewController = storyboard.instantiateViewControllerWithIdentifier(Constants.SubRootViewId) as! SubRootViewController

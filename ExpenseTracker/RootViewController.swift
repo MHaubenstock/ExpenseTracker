@@ -38,6 +38,14 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
         // Add the page view controller's gesture recognizers to the book view controller's view so that the gestures are started more easily.
         self.view.gestureRecognizers = self.pageViewController!.gestureRecognizers
     }
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        //When paging back to an entity, show the overview first even if it was on another page when you left the entity
+        setDefaultStartingViewControllerAsVisibleViewController(false)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -104,14 +112,14 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
         return [(viewControllers.first)!]
     }
     
-    func setDefaultStartingViewControllerAsVisibleViewController()
+    func setDefaultStartingViewControllerAsVisibleViewController(animated : Bool)
     {
-        setVisibleViewControllerForPageViewController(getStartingViewController())
+        setVisibleViewControllerForPageViewController(getStartingViewController(), animated: animated)
     }
     
-    func setVisibleViewControllerForPageViewController(viewController : [UIViewController])
+    func setVisibleViewControllerForPageViewController(viewController : [UIViewController], animated : Bool)
     {
-        self.pageViewController?.setViewControllers(viewController, direction: .Forward, animated: false, completion: nil)
+        self.pageViewController?.setViewControllers(viewController, direction: .Forward, animated: animated, completion: nil)
     }
 }
 

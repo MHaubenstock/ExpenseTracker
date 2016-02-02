@@ -58,6 +58,13 @@
 			name = Category;
 			sourceTree = "<group>";
 		};
+		4C2B4A0D1C60667E00DFDE0B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		4C5D78301C5B3D0F00BFEB4B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +83,7 @@
 			children = (
 				4C5D780B1C5AF93000BFEB4B /* Entity.swift */,
 				4CC9D0941C4EB8CA0009948D /* Constants.swift */,
+				4C2B4A0D1C60667E00DFDE0B /* Protocols */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -83,18 +91,10 @@
 		4C5D78321C5B3D8A00BFEB4B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4C5D78331C5B43BB00BFEB4B /* View Controllers */,
 				4CC9D0861C4EB80B0009948D /* Main.storyboard */,
 				4CC9D08B1C4EB80B0009948D /* LaunchScreen.storyboard */,
 			);
 			name = View;
-			sourceTree = "<group>";
-		};
-		4C5D78331C5B43BB00BFEB4B /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		4CC9D0721C4EB80B0009948D = {

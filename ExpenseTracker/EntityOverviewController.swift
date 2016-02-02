@@ -22,17 +22,20 @@ class EntityOverviewController : UIViewController, UITableViewDelegate, UITableV
         entityTable.delegate = self
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        totalLabel.text = "Total: $\(AppDelegate.amountTotal())"
+        totalLabel.text = "Total: $\(AppDelegate.amountTotalForEntityTypes(entityTypesArrayForEntities()))"
         
         loadData()
+    }
+    
+    static func initializeEntityOverviewControllerWithEntities(entities: [Entity], storyboard : UIStoryboard) -> EntityOverviewController
+    {
+        let entityOverviewController = storyboard.instantiateViewControllerWithIdentifier(Constants.OverviewId) as! EntityOverviewController
+        entityOverviewController.entities = entities
+        
+        return entityOverviewController
     }
     
     func loadData()
@@ -43,30 +46,35 @@ class EntityOverviewController : UIViewController, UITableViewDelegate, UITableV
     //MARK: Table View DataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        return Constants.Entities.count
+        return entities.count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
-        return Constants.Entities[section].type
+        return entities[section].type
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        let count = AppDelegate.filteredEntityType(Constants.Entities[section].type).count
-        
-        return count
+        return AppDelegate.filteredEntityType(entities[section].type).count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier(Constants.EntityCellId)! as UITableViewCell
         
-        let entity = AppDelegate.filteredEntityType(Constants.Entities[indexPath.section].type)[indexPath.row]
+        //This is inefficient
+        let entity = AppDelegate.filteredEntityType(entities[indexPath.section].type)[indexPath.row]
         
         cell.textLabel?.text = entity.valueForKey(EntityParameters.title) as? String
         cell.detailTextLabel?.text = "$\((entity.valueForKey(EntityParameters.amount) as! Float))"
 
         return cell
+    }
+    
+    // MARK: Helper Functions
+    func entityTypesArrayForEntities() -> [String]
+    {
+        return entities.map{ (entity) -> String in return entity.type }
     }
 }

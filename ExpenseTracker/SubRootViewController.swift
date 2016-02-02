@@ -22,7 +22,8 @@ class SubRootViewController : RootViewController
     
     override func getViewControllersForPageViewController() -> [UIViewController]
     {
-        return self.modelController.subRootViewControllersForEntity(entity, storyboard: self.storyboard!)
+        //return self.modelController.subRootViewControllersForEntity(entity, storyboard: self.storyboard!)
+        return [UIViewController]()
     }
     
     override func getUIPageViewControllerWithTransitionStyle() -> UIPageViewController

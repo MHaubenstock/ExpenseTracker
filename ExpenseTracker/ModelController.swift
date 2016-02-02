@@ -32,7 +32,7 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
     {
         if viewControllers == nil
         {
-            viewControllers = [storyboard.instantiateViewControllerWithIdentifier(Constants.OverviewId)] + Constants.Entities.map { (entity) -> SubRootViewController in
+            viewControllers = [EntityOverviewController.initializeEntityOverviewControllerWithEntities(Constants.Entities, storyboard: storyboard)] + Constants.Entities.map { (entity) -> SubRootViewController in
                 return SubRootViewController.initializeSubRootViewControllerWithEntity(entity, storyboard: storyboard)
             }
         }
@@ -44,7 +44,7 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
     {
         if viewControllers == nil
         {
-            viewControllers = [AddEntityController.initializeAddEntityControllerWithEntity(entity, storyboard: storyboard), SingleEntityOverviewController.initializeSingleEntityOverviewControllerWithEntity(entity, storyboard: storyboard)]
+            viewControllers = [AddEntityController.initializeAddEntityControllerWithEntity(entity, storyboard: storyboard), EntityOverviewController.initializeEntityOverviewControllerWithEntities([entity], storyboard: storyboard)]
         }
         
         return viewControllers

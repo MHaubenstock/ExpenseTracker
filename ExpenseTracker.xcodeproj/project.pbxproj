@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4C5D780A1C5AEFDA00BFEB4B /* AddEntityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D78091C5AEFDA00BFEB4B /* AddEntityController.swift */; };
 		4C5D780C1C5AF93000BFEB4B /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D780B1C5AF93000BFEB4B /* Entity.swift */; };
-		4C5D78371C5B444D00BFEB4B /* SingleEntityOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D78361C5B444D00BFEB4B /* SingleEntityOverviewController.swift */; };
 		4C5D783B1C5BABAA00BFEB4B /* SubRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D783A1C5BABAA00BFEB4B /* SubRootViewController.swift */; };
 		4CC9D07F1C4EB80B0009948D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9D07E1C4EB80B0009948D /* AppDelegate.swift */; };
 		4CC9D0811C4EB80B0009948D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9D0801C4EB80B0009948D /* RootViewController.swift */; };
@@ -20,12 +19,14 @@
 		4CC9D0951C4EB8CA0009948D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9D0941C4EB8CA0009948D /* Constants.swift */; };
 		4CC9D0971C4EC8060009948D /* EntityOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9D0961C4EC8060009948D /* EntityOverviewController.swift */; };
 		4CC9D0BD1C4FE0270009948D /* EntityData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9D0BB1C4FE0270009948D /* EntityData.xcdatamodeld */; };
+		4CDCB50C1C61390800B14939 /* GlobalSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCB50B1C61390800B14939 /* GlobalSettingsController.swift */; };
+		4CDCB50E1C616FE800B14939 /* SingleEntityRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCB50D1C616FE800B14939 /* SingleEntityRootViewController.swift */; };
+		4CDCB5101C61706100B14939 /* GlobalRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCB50F1C61706100B14939 /* GlobalRootViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4C5D78091C5AEFDA00BFEB4B /* AddEntityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEntityController.swift; sourceTree = "<group>"; };
 		4C5D780B1C5AF93000BFEB4B /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
-		4C5D78361C5B444D00BFEB4B /* SingleEntityOverviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleEntityOverviewController.swift; sourceTree = "<group>"; };
 		4C5D783A1C5BABAA00BFEB4B /* SubRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubRootViewController.swift; sourceTree = "<group>"; };
 		4CC9D07B1C4EB80B0009948D /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CC9D07E1C4EB80B0009948D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +39,9 @@
 		4CC9D0941C4EB8CA0009948D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4CC9D0961C4EC8060009948D /* EntityOverviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityOverviewController.swift; sourceTree = "<group>"; };
 		4CC9D0BC1C4FE0270009948D /* EntityData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EntityData.xcdatamodel; sourceTree = "<group>"; };
+		4CDCB50B1C61390800B14939 /* GlobalSettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalSettingsController.swift; sourceTree = "<group>"; };
+		4CDCB50D1C616FE800B14939 /* SingleEntityRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleEntityRootViewController.swift; sourceTree = "<group>"; };
+		4CDCB50F1C61706100B14939 /* GlobalRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalRootViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,12 +72,9 @@
 		4C5D78301C5B3D0F00BFEB4B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4C5D78091C5AEFDA00BFEB4B /* AddEntityController.swift */,
-				4CC9D0961C4EC8060009948D /* EntityOverviewController.swift */,
-				4CC9D0841C4EB80B0009948D /* ModelController.swift */,
-				4CC9D0801C4EB80B0009948D /* RootViewController.swift */,
-				4C5D783A1C5BABAA00BFEB4B /* SubRootViewController.swift */,
-				4C5D78361C5B444D00BFEB4B /* SingleEntityOverviewController.swift */,
+				4CDCB50A1C6138CD00B14939 /* Active View Controller */,
+				4CDCB5091C6138BF00B14939 /* Model Controller */,
+				4CDCB5081C6138A800B14939 /* Root View Controller */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -126,6 +127,43 @@
 				4CC9D0BB1C4FE0270009948D /* EntityData.xcdatamodeld */,
 			);
 			path = ExpenseTracker;
+			sourceTree = "<group>";
+		};
+		4CDCB5081C6138A800B14939 /* Root View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4CDCB5111C6170C700B14939 /* SubRootViewController Subclass */,
+				4CC9D0801C4EB80B0009948D /* RootViewController.swift */,
+				4C5D783A1C5BABAA00BFEB4B /* SubRootViewController.swift */,
+			);
+			name = "Root View Controller";
+			sourceTree = "<group>";
+		};
+		4CDCB5091C6138BF00B14939 /* Model Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4CC9D0841C4EB80B0009948D /* ModelController.swift */,
+			);
+			name = "Model Controller";
+			sourceTree = "<group>";
+		};
+		4CDCB50A1C6138CD00B14939 /* Active View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4C5D78091C5AEFDA00BFEB4B /* AddEntityController.swift */,
+				4CC9D0961C4EC8060009948D /* EntityOverviewController.swift */,
+				4CDCB50B1C61390800B14939 /* GlobalSettingsController.swift */,
+			);
+			name = "Active View Controller";
+			sourceTree = "<group>";
+		};
+		4CDCB5111C6170C700B14939 /* SubRootViewController Subclass */ = {
+			isa = PBXGroup;
+			children = (
+				4CDCB50F1C61706100B14939 /* GlobalRootViewController.swift */,
+				4CDCB50D1C616FE800B14939 /* SingleEntityRootViewController.swift */,
+			);
+			name = "SubRootViewController Subclass";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,12 +238,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C5D780A1C5AEFDA00BFEB4B /* AddEntityController.swift in Sources */,
+				4CDCB5101C61706100B14939 /* GlobalRootViewController.swift in Sources */,
 				4CC9D0BD1C4FE0270009948D /* EntityData.xcdatamodeld in Sources */,
 				4CC9D0951C4EB8CA0009948D /* Constants.swift in Sources */,
 				4CC9D0811C4EB80B0009948D /* RootViewController.swift in Sources */,
 				4C5D780C1C5AF93000BFEB4B /* Entity.swift in Sources */,
+				4CDCB50C1C61390800B14939 /* GlobalSettingsController.swift in Sources */,
+				4CDCB50E1C616FE800B14939 /* SingleEntityRootViewController.swift in Sources */,
 				4CC9D0851C4EB80B0009948D /* ModelController.swift in Sources */,
-				4C5D78371C5B444D00BFEB4B /* SingleEntityOverviewController.swift in Sources */,
 				4C5D783B1C5BABAA00BFEB4B /* SubRootViewController.swift in Sources */,
 				4CC9D07F1C4EB80B0009948D /* AppDelegate.swift in Sources */,
 				4CC9D0971C4EC8060009948D /* EntityOverviewController.swift in Sources */,

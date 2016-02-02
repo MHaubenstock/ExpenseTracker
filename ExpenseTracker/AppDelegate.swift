@@ -139,6 +139,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
     }
     
+    static func filteredEntityTypes(entityTypes : [String]) -> [NSManagedObject]
+    {
+        return AppDelegate.entities.filter({
+            (entity : NSManagedObject) -> Bool in return entityTypes.contains((entity.valueForKey(EntityParameters.type) as! String))
+        })
+    }
+    
     static func filteredCategory(category : String, ofEntityType entityType : String) -> [NSManagedObject]
     {
         return filteredEntityType(entityType).filter({
@@ -154,6 +161,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static func amountTotalForEntityType(entityType : String) -> Float
     {
         return amountTotalForEntityArray(filteredEntityType(entityType))
+    }
+    
+    static func amountTotalForEntityTypes(entityTypes : [String]) -> Float
+    {
+        return amountTotalForEntityArray(filteredEntityTypes(entityTypes))
     }
     
     static func amountTotalForCategory(category : String, ofEntityType entityType : String) -> Float

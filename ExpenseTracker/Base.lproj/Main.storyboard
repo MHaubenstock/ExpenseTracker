@@ -118,6 +118,7 @@
         <!--Single Entity Overview Controller-->
         <scene sceneID="Y7p-U8-Res">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BU5-iB-ENh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="SingleEntityOverview" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hq5-Rc-4UF" customClass="SingleEntityOverviewController" customModule="ExpenseTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hoT-UE-pNj"/>
@@ -185,7 +186,6 @@
                         <outlet property="totalLabel" destination="3lk-j0-tTz" id="4JG-Ve-xxW"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BU5-iB-ENh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1275" y="-897"/>
         </scene>

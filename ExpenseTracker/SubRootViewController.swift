@@ -12,11 +12,6 @@ class SubRootViewController : RootViewController
 {
     var entity : Entity!
     
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-    }
-    
     static func initializeSubRootViewControllerWithEntity(entity: Entity, storyboard : UIStoryboard) -> SubRootViewController
     {
         let subRootViewController = storyboard.instantiateViewControllerWithIdentifier(Constants.SubRootViewId) as! SubRootViewController

@@ -8,10 +8,12 @@
 
 import UIKit
 
-class EntityOverviewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class EntityOverviewController : UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     @IBOutlet weak var entityTable : UITableView!
     @IBOutlet weak var totalLabel : UILabel!
+    
+    var entities : [Entity]!
     
     override func viewDidLoad() {
         super.viewDidLoad()

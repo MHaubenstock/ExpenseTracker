@@ -18,11 +18,8 @@ import Foundation
 
 import UIKit
 
-class SingleEntityOverviewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class SingleEntityOverviewController : EntityOverviewController
 {
-    @IBOutlet weak var entityTable : UITableView!
-    @IBOutlet weak var totalLabel : UILabel!
-    
     var entity : Entity!
     
     override func viewDidLoad() {
@@ -42,7 +39,6 @@ class SingleEntityOverviewController: UIViewController, UITableViewDelegate, UIT
         
         totalLabel.text = "Total: $\(AppDelegate.amountTotalForEntityType(entity.type))"
         
-        
         loadData()
     }
     
@@ -54,23 +50,23 @@ class SingleEntityOverviewController: UIViewController, UITableViewDelegate, UIT
         return singleEntityOverviewController
     }
     
-    func loadData()
+    override func loadData()
     {
         entityTable.reloadData()
     }
     
     //MARK: Table View DataSource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         return 1
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         return Constants.Entities[AppDelegate.indexOfEnity(entity)].type
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         //Could be more efficient
         let count = AppDelegate.filteredEntityType(Constants.Entities[AppDelegate.indexOfEnity(entity)].type).count
@@ -78,7 +74,7 @@ class SingleEntityOverviewController: UIViewController, UITableViewDelegate, UIT
         return count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier(Constants.EntityCellId)! as UITableViewCell
         

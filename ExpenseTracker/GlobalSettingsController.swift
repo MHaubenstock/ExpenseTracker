@@ -14,7 +14,14 @@ class GlobalSettingsController : UIViewController
     @IBOutlet var monthlyBudgetLabel : UILabel!
     @IBOutlet var monthlyBudgetField : UITextField!
     
-    static func initializeGlobalSettingsControllerWithEntity(entity: Entity, storyboard : UIStoryboard) -> GlobalSettingsController
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        monthlyBudgetField.text = String(GlobalSettings.MonthlyBudget)
+    }
+    
+    static func initializeGlobalSettingsController(storyboard : UIStoryboard) -> GlobalSettingsController
     {
         let globalSettingsController = storyboard.instantiateViewControllerWithIdentifier(Constants.GlobalSettingsId) as! GlobalSettingsController
         
@@ -24,5 +31,7 @@ class GlobalSettingsController : UIViewController
     @IBAction func saveGlobalSettings(sender : UIButton)
     {
         print("Save Global Settings")
+        
+        GlobalSettings.MonthlyBudget = Float(monthlyBudgetField.text!)!
     }
 }

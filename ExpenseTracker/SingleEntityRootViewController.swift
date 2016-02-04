@@ -10,8 +10,17 @@ import UIKit
 
 class SingleEntityRootViewController : SubRootViewController
 {
+    static func initializeSingleEntityRootViewControllerWithEntity(entity: Entity, storyboard : UIStoryboard) -> SingleEntityRootViewController
+    {
+        
+        let singleEntityRootViewController = storyboard.instantiateViewControllerWithIdentifier(Constants.SingleEntityRootViewId) as! SingleEntityRootViewController
+        singleEntityRootViewController.entity = entity
+        
+        return singleEntityRootViewController
+    }
+    
     override func getViewControllersForPageViewController() -> [UIViewController]
     {
-        return self.modelController.subRootViewControllersForEntity(entity, storyboard: self.storyboard!)
+        return self.modelController.singleEntityRootViewControllersForEntity(entity, storyboard: self.storyboard!)
     }
 }

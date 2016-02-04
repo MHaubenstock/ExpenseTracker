@@ -14,7 +14,8 @@ class Constants
     static let GlobalSettingsId = "GlobalSettings"
     static let OverviewId = "Overview"
     static let EntityAddId = "AddEntity"
-    static let SubRootViewId = "SubRootView"
+    static let GlobalRootViewId = "GlobalRootView"
+    static let SingleEntityRootViewId = "SingleEntityRootView"
     static let EntityCellId = "EntityCell"
     static let EntityId = "Entity"
     

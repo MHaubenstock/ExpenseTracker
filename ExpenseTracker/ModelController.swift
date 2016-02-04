@@ -32,15 +32,25 @@ class ModelController: NSObject, UIPageViewControllerDataSource {
     {
         if viewControllers == nil
         {
-            viewControllers = [EntityOverviewController.initializeEntityOverviewControllerWithEntities(Constants.Entities, storyboard: storyboard)] + Constants.Entities.map { (entity) -> SubRootViewController in
-                return SubRootViewController.initializeSubRootViewControllerWithEntity(entity, storyboard: storyboard)
+            viewControllers = [GlobalRootViewController.initializeGlobalRootViewControllerWithEntity(storyboard)] + Constants.Entities.map { (entity) -> SingleEntityRootViewController in
+                return SingleEntityRootViewController.initializeSingleEntityRootViewControllerWithEntity(entity, storyboard: storyboard)
             }
         }
         
         return viewControllers
     }
     
-    func subRootViewControllersForEntity(entity : Entity, storyboard: UIStoryboard) -> [UIViewController]!
+    func globalRootViewControllers(storyboard: UIStoryboard) -> [UIViewController]!
+    {
+        if viewControllers == nil
+        {
+            viewControllers = [GlobalSettingsController.initializeGlobalSettingsController(storyboard), EntityOverviewController.initializeEntityOverviewControllerWithEntities(Constants.Entities, storyboard: storyboard)]
+        }
+        
+        return viewControllers
+    }
+    
+    func singleEntityRootViewControllersForEntity(entity : Entity, storyboard: UIStoryboard) -> [UIViewController]!
     {
         if viewControllers == nil
         {

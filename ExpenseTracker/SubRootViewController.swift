@@ -12,17 +12,8 @@ class SubRootViewController : RootViewController
 {
     var entity : Entity!
     
-    static func initializeSubRootViewControllerWithEntity(entity: Entity, storyboard : UIStoryboard) -> SubRootViewController
-    {
-        let subRootViewController = storyboard.instantiateViewControllerWithIdentifier(Constants.SubRootViewId) as! SubRootViewController
-        subRootViewController.entity = entity
-        
-        return subRootViewController
-    }
-    
     override func getViewControllersForPageViewController() -> [UIViewController]
     {
-        //return self.modelController.subRootViewControllersForEntity(entity, storyboard: self.storyboard!)
         return [UIViewController]()
     }
     

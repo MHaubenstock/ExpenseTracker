@@ -10,8 +10,15 @@ import UIKit
 
 class GlobalRootViewController : SubRootViewController
 {
+    static func initializeGlobalRootViewControllerWithEntity(storyboard : UIStoryboard) -> GlobalRootViewController
+    {
+        let globalRootViewController = storyboard.instantiateViewControllerWithIdentifier(Constants.GlobalRootViewId) as! GlobalRootViewController
+        
+        return globalRootViewController
+    }
+    
     override func getViewControllersForPageViewController() -> [UIViewController]
     {
-        return self.modelController.subRootViewControllersForEntity(entity, storyboard: self.storyboard!)
+        return self.modelController.globalRootViewControllers(self.storyboard!)
     }
 }

@@ -107,5 +107,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    // Mark: - Fetching from CoreData
+    static func fetchEntityFromManagedObjectContext(entityName : String) -> [NSManagedObject]
+    {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: entityName)
+        
+        do
+        {
+            let results = try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            return results
+        }
+        catch let error as NSError
+        {
+            print("Could not fetch \(error), \(error.userInfo)")
+            return [NSManagedObject]()
+        }
+    }
 }
 

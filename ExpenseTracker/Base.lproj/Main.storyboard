@@ -168,8 +168,21 @@
                                     <outlet property="delegate" destination="Yot-Qs-aV8" id="q5F-b4-fI9"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remaining Funds: $0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JnW-SW-Fbu" userLabel="Remaining Label">
+                                <rect key="frame" x="20" y="28" width="213" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="213" id="a6v-Yt-igp"/>
+                                    <constraint firstAttribute="height" constant="28" id="hcs-wZ-2NT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total: $0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mG2-LD-Tve">
-                                <rect key="frame" x="254" y="62" width="92" height="21"/>
+                                <rect key="frame" x="254" y="110" width="92" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="b7v-Yz-l45"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -177,15 +190,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mG2-LD-Tve" firstAttribute="top" secondItem="oTz-dc-XZ5" secondAttribute="bottom" constant="42" id="16n-4Y-VIh"/>
-                            <constraint firstItem="BsX-kq-f9o" firstAttribute="top" secondItem="MbX-DM-M7M" secondAttribute="bottom" constant="8" id="37Y-SW-BrM"/>
-                            <constraint firstItem="MbX-DM-M7M" firstAttribute="leading" secondItem="9LY-6z-qYP" secondAttribute="leadingMargin" id="RUO-hC-BrZ"/>
-                            <constraint firstItem="MbX-DM-M7M" firstAttribute="trailing" secondItem="9LY-6z-qYP" secondAttribute="trailingMargin" id="Xgg-gi-dZa"/>
-                            <constraint firstItem="mG2-LD-Tve" firstAttribute="centerX" secondItem="9LY-6z-qYP" secondAttribute="centerX" id="dIg-T7-PfN"/>
+                            <constraint firstItem="MbX-DM-M7M" firstAttribute="trailing" secondItem="9LY-6z-qYP" secondAttribute="trailingMargin" id="1e0-P1-Mf3"/>
+                            <constraint firstItem="mG2-LD-Tve" firstAttribute="centerX" secondItem="9LY-6z-qYP" secondAttribute="centerX" id="Gcb-mW-Klu"/>
+                            <constraint firstItem="JnW-SW-Fbu" firstAttribute="top" secondItem="oTz-dc-XZ5" secondAttribute="bottom" constant="8" id="JfC-7E-HYg"/>
+                            <constraint firstItem="MbX-DM-M7M" firstAttribute="leading" secondItem="9LY-6z-qYP" secondAttribute="leadingMargin" id="d9K-jD-c5Q"/>
+                            <constraint firstItem="BsX-kq-f9o" firstAttribute="top" secondItem="MbX-DM-M7M" secondAttribute="bottom" constant="8" id="ggc-b0-Uib"/>
+                            <constraint firstItem="MbX-DM-M7M" firstAttribute="top" secondItem="mG2-LD-Tve" secondAttribute="bottom" constant="8" id="lje-gH-WBQ"/>
+                            <constraint firstItem="JnW-SW-Fbu" firstAttribute="leading" secondItem="9LY-6z-qYP" secondAttribute="leadingMargin" id="zHO-VO-vON"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="entityTable" destination="MbX-DM-M7M" id="o8S-hp-gPj"/>
+                        <outlet property="remainingFundsLabel" destination="JnW-SW-Fbu" id="TAi-9M-g0O"/>
                         <outlet property="totalLabel" destination="mG2-LD-Tve" id="KBA-es-CwY"/>
                     </connections>
                 </viewController>

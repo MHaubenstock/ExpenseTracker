@@ -12,6 +12,7 @@ class EntityOverviewController : UIViewController, UITableViewDelegate, UITableV
 {
     @IBOutlet weak var entityTable : UITableView!
     @IBOutlet weak var totalLabel : UILabel!
+    @IBOutlet weak var remainingFundsLabel : UILabel!
     
     var entities : [Entity]!
     
@@ -26,6 +27,7 @@ class EntityOverviewController : UIViewController, UITableViewDelegate, UITableV
         super.viewWillAppear(animated)
 
         totalLabel.text = "Total: $\(AppDelegate.amountTotalForEntityTypes(entityTypesArrayForEntities()))"
+        remainingFundsLabel.text = "Remaining: $\(AppDelegate.getRemainingFunds())"
         
         loadData()
     }

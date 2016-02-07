@@ -1,1 +1,21 @@
+PODS:
+  - AnimationChaining (1.0):
+    - AnimationChaining/Source (= 1.0)
+  - AnimationChaining/Source (1.0)
+
+DEPENDENCIES:
+  - AnimationChaining (from `https://github.com/ahaubenstock/AnimationChaining.git`)
+
+EXTERNAL SOURCES:
+  AnimationChaining:
+    :git: https://github.com/ahaubenstock/AnimationChaining.git
+
+CHECKOUT OPTIONS:
+  AnimationChaining:
+    :commit: 09a8dd17cd3f1a1173d96958ecdc97e14d8c7475
+    :git: https://github.com/ahaubenstock/AnimationChaining.git
+
+SPEC CHECKSUMS:
+  AnimationChaining: 8fd7d7e06208d3f2ddb81d8cada78e3cd68a366f
+
 COCOAPODS: 0.38.2

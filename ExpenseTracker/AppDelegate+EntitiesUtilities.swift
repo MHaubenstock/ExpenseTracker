@@ -10,26 +10,7 @@ import UIKit
 import CoreData
 
 extension AppDelegate
-{
-    // Mark: - Fetching from CoreData
-    static func fetchEntityFromManagedObjectContext(entityName : String) -> [NSManagedObject]
-    {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        let fetchRequest = NSFetchRequest(entityName: entityName)
-        
-        do
-        {
-            let results = try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
-            return results
-        }
-        catch let error as NSError
-        {
-            print("Could not fetch \(error), \(error.userInfo)")
-            return [NSManagedObject]()
-        }
-    }
-    
+{    
     static func setEntitiesArray(entities : [NSManagedObject])
     {
         self.entities = entities
@@ -54,6 +35,11 @@ extension AppDelegate
         return filteredEntityType(entityType).filter({
             (entity : NSManagedObject) -> Bool in return entity.valueForKey(EntityParameters.category) as! String == category
         })
+    }
+    
+    static func getRemainingFunds() -> Float
+    {
+        return GlobalSettings.MonthlyBudget - AppDelegate.amountTotal()
     }
     
     static func amountTotal() -> Float

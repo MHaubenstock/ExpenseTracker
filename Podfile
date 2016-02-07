@@ -3,5 +3,9 @@
 
 target 'ExpenseTracker' do
 
+use_frameworks!
+
+pod 'AnimationChaining', :git => 'https://github.com/ahaubenstock/AnimationChaining.git'
+
 end
 

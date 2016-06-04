@@ -23,6 +23,18 @@ class GlobalSettings
         }
     }
     
+    static var MonthlySavings : Float
+    {
+        set
+        {
+            GlobalSettings.saveGlobalSetting(newValue, key: GlobalSettings.MonthlySavingsKey)
+        }
+        get
+        {
+            return GlobalSettings.loadGlobalSetting(GlobalSettings.MonthlySavingsKey, defaultValue: GlobalSettings.MonthlySavingsDefaultValue) as! Float
+        }
+    }
+    
     // MARK: Generic Getter and Setter functions
     private static func loadGlobalSetting(key : String, defaultValue : AnyObject) -> AnyObject
     {
@@ -45,7 +57,9 @@ class GlobalSettings
     
     // MARK: Global Settings Default Values
     private static let MonthlyBudgetDefaultValue = 0.00
+    private static let MonthlySavingsDefaultValue = 0.00
     
     // MARK: Global Settings Constants Keys
     private static let MonthlyBudgetKey = "MonthlyBudget"
+    private static let MonthlySavingsKey = "MonthlySavings"
 }

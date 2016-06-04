@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -94,17 +95,48 @@
                                     <action selector="saveGlobalSettings:" destination="5eu-eF-wmW" eventType="touchUpInside" id="in9-XF-a5s"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount to Save / Month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQ6-1O-go4">
+                                <rect key="frame" x="20" y="244" width="205" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="V65-Za-n3G"/>
+                                    <constraint firstAttribute="width" constant="205" id="ZfB-WZ-i93"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Dg1-iK-PsH">
+                                <rect key="frame" x="81" y="281" width="285" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Dg1-iK-PsH" secondAttribute="height" multiplier="281:30" id="vVO-ie-Nia"/>
+                                </constraints>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYm-EI-gK5">
+                                <rect key="frame" x="20" y="285" width="55" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bYm-EI-gK5" secondAttribute="height" multiplier="55:21" id="35B-pB-4AR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="aDZ-21-Jxy" firstAttribute="top" secondItem="sEV-jk-Uio" secondAttribute="bottom" constant="8" id="26g-Dz-lSn"/>
+                            <constraint firstItem="Dg1-iK-PsH" firstAttribute="top" secondItem="BQ6-1O-go4" secondAttribute="bottom" constant="8" id="4ok-s4-wAY"/>
                             <constraint firstItem="Oda-n1-xhm" firstAttribute="leading" secondItem="iIz-5q-j8R" secondAttribute="leadingMargin" id="ANJ-MM-yX3"/>
+                            <constraint firstItem="BQ6-1O-go4" firstAttribute="top" secondItem="aDZ-21-Jxy" secondAttribute="bottom" constant="40" id="HYi-KW-muT"/>
+                            <constraint firstItem="BQ6-1O-go4" firstAttribute="leading" secondItem="iIz-5q-j8R" secondAttribute="leadingMargin" id="JZ2-yu-mH2"/>
                             <constraint firstItem="sEV-jk-Uio" firstAttribute="top" secondItem="hkx-PI-YW2" secondAttribute="bottom" constant="125" id="LCc-ZG-Bbm"/>
+                            <constraint firstItem="bYm-EI-gK5" firstAttribute="top" secondItem="BQ6-1O-go4" secondAttribute="bottom" constant="12" id="Nfl-TO-4Hu"/>
                             <constraint firstItem="hl6-nL-Y59" firstAttribute="top" secondItem="rh7-YD-trL" secondAttribute="bottom" constant="20" id="P8p-kk-XuY"/>
                             <constraint firstItem="rh7-YD-trL" firstAttribute="trailing" secondItem="iIz-5q-j8R" secondAttribute="trailingMargin" id="SSm-PR-wYb"/>
                             <constraint firstItem="sEV-jk-Uio" firstAttribute="leading" secondItem="iIz-5q-j8R" secondAttribute="leadingMargin" id="Y3K-jz-bjB"/>
                             <constraint firstItem="aDZ-21-Jxy" firstAttribute="leading" secondItem="iIz-5q-j8R" secondAttribute="leadingMargin" id="aUd-gB-NFd"/>
+                            <constraint firstItem="Dg1-iK-PsH" firstAttribute="leading" secondItem="bYm-EI-gK5" secondAttribute="trailing" constant="8" id="ar3-CV-0FL"/>
                             <constraint firstItem="rh7-YD-trL" firstAttribute="leading" secondItem="iIz-5q-j8R" secondAttribute="leadingMargin" id="kes-J3-RKC"/>
+                            <constraint firstItem="bYm-EI-gK5" firstAttribute="leading" secondItem="iIz-5q-j8R" secondAttribute="leadingMargin" id="lcU-h5-JvF"/>
                             <constraint firstItem="Oda-n1-xhm" firstAttribute="top" secondItem="hkx-PI-YW2" secondAttribute="bottom" constant="8" id="uHN-eu-CjC"/>
                             <constraint firstItem="Oda-n1-xhm" firstAttribute="trailing" secondItem="iIz-5q-j8R" secondAttribute="trailingMargin" id="ySg-Xw-oTi"/>
                         </constraints>
@@ -112,6 +144,9 @@
                     <connections>
                         <outlet property="monthlyBudgetField" destination="aDZ-21-Jxy" id="2zd-Pe-afG"/>
                         <outlet property="monthlyBudgetLabel" destination="sEV-jk-Uio" id="Ikf-Wo-lXm"/>
+                        <outlet property="monthlySavingsLabel" destination="BQ6-1O-go4" id="0bt-o5-93d"/>
+                        <outlet property="monthlySavingsSlider" destination="Dg1-iK-PsH" id="0sC-cN-A3T"/>
+                        <outlet property="monthlySavingsValueLabel" destination="bYm-EI-gK5" id="Koe-c8-1F2"/>
                         <outlet property="viewTitleLabel" destination="Oda-n1-xhm" id="hei-a8-BOb"/>
                     </connections>
                 </viewController>
